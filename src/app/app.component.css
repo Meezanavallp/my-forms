@@ -1,0 +1,38 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    width: 100%;
+}
+.actbutton{
+    display: flex;
+    justify-content: flex-start;
+}
+
+::ng-deep .mat-form-field{
+    width: 300px;
+}
+::ng-deep .mat-expansion-panel-body{
+    margin: 16px 24px;
+}
+.card {
+    margin-top: 50px;
+}
+
+.card-display {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+::ng-deep .mat-expansion-panel{
+    width: 320px;
+}
+
+.buttonflex{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

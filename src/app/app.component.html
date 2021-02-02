@@ -1,0 +1,67 @@
+<!-- Add a Flash card form  -->
+
+<form [formGroup]="addCard" (ngSubmit)="addCardList()" *ngIf="save"> 
+  <div class="main">
+    <h1>Add a Flash Card</h1>
+    <mat-form-field appearance="outline">
+      <mat-label>Question</mat-label>
+      <input matInput formControlName='question'>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+    <mat-label>Answer</mat-label>
+    <input matInput formControlName='answer'>
+    </mat-form-field>
+    <div class="actbutton">
+      <button mat-raised-button color="primary" style="margin-right: 20px;" type="submit">Submit</button>
+      <button mat-raised-button color="accent" (click)="onClear()">Clear</button>
+    </div>
+    <h5 style="color: red; margin-top: 20px;" *ngIf="incomplete">Enter all values</h5>
+  </div>
+</form>
+
+<!-- Update a Flash card form  -->
+
+<form [formGroup]="addCard" (ngSubmit)="updateCard()" *ngIf="update"> 
+  <div class="main">
+    <h1>Update a Flash Card</h1>
+    <mat-form-field appearance="outline">
+      <mat-label>Question</mat-label>
+    <input matInput formControlName='question'>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Answer</mat-label>
+      <input matInput formControlName='answer'>
+    </mat-form-field>
+    <div class="actbutton">
+      <button mat-raised-button color="primary" style="margin-right: 20px;" type="submit">Submit</button>
+      <button mat-raised-button color="accent" (click)="onClear()">Clear</button>
+    </div>
+    <h5 style="color: red; margin-top: 20px;" *ngIf="answer==''||question==''">Enter all values</h5>
+  </div>
+  </form>
+
+  <!-- Card display section  -->
+<div class="card-display">
+<div class="card" *ngFor = "let item of collection; let i = index">
+  <mat-expansion-panel>
+<mat-expansion-panel-header [ngStyle] = "{'background-color': item.isChecked}">
+<mat-panel-title>
+{{item.question}}
+</mat-panel-title>
+<mat-panel-description>
+<!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
+</mat-panel-description>
+</mat-expansion-panel-header>
+<p>{{item.answer}}</p>
+
+<!-- card action buttons  -->
+<mat-action-row class="buttonflex">
+  <button mat-icon-button data-toggle="tooltip" title="right!"(click)="onCheck(i)"><mat-icon style="color: green;">check_circle</mat-icon></button>
+  <button mat-icon-button data-toggle="tooltip" title="wrong!" (click)="onWrong(i)"><mat-icon style="color: red;">cancel</mat-icon></button>
+  <button mat-icon-button data-toggle="tooltip" title="update" (click)="onUpdate(i)"><mat-icon style="color: blue;">mode</mat-icon></button>
+  <button mat-icon-button data-toggle="tooltip" title="delete" (click)="onDelete(i)"><mat-icon style="color: coral;">delete_sweep</mat-icon></button>
+</mat-action-row>
+</mat-expansion-panel>
+</div>
+</div>
+
